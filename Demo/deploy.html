@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Asset Management App Demo</title>
+</head>
+<body>
+    <section id="main">
+        <div class="container">
+            <h1 class="text-center">Asset Management App Demo</h1>
+            <hr>
+            <div class="row my-3">
+                <div class="col-md-10 mx-auto">
+                    <div class="card mx-auto">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h4 class=" text-center">Select One Below</h4>
+                                <hr>
+                                <div id="selector-main">
+                                    <form id="form-deploy">
+                                        <div class="row mb-3">
+                                            <div class="col">
+                                                <label for="type">Device Type</label>
+                                                <select class="form-control" name="type" id="type">                                                    
+                                                    <option value='not-count' selected="selected">Select Device Type</option>
+                                                    <option>Desktop</option>
+                                                    <option>Laptop</option>
+                                                  </select>
+                                            </div>
+                                            <div class="col">
+                                                <label for="model">Device Model</label>
+                                                <select class="form-control" name="model" id="model">
+                                                    <option value='not-count' value="" selected="selected">Please select a Type first</option>
+                                                  </select>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col">
+                                                <label for="site">Deployed Site</label>
+                                                <select name="site" id="site" class="form-control">
+                                                    <option value='not-count' selected="selected">Select a Site</option>
+                                                    <option>F10N</option>
+                                                    <option>F10W</option>
+                                                    <option>F10A</option>
+                                                    <option>F10X</option>
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <label for="category">Ownership Category</label>
+                                                <select name="category" id="category" class="form-control">
+                                                    <option value='not-count' selected="selected">Select a Category</option>
+                                                    <option>Primary Device</option>
+                                                    <option>Secondary Device</option>
+                                                    <option>Share Device</option>
+                                                    <option>VIP Device</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col">
+                                                <label for="serial-number">Serial Number</label>
+                                                <input type="text" id="serial-number" class="form-control" placeholder="Serial Number" required>
+                                            </div>
+                                            <div class="col">
+                                                <label for="user-id">User ID</label>
+                                                <input type="text" id="user-id" class="form-control" placeholder="User ID" required>
+                                            </div>
+                                        </div>
+
+                                        <button class="btn btn-primary btn-block" type="submit" id="submit-new">Submit</button>
+                                    </form>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+
+    <script>
+        jQuery(function($) {
+            var deviceModels = {
+                'Desktop': ['HP 800 G3 SFF','HP 800 G4 SFF','HP 800 G5 SFF'],
+                'Laptop': ['HP 840 G3','HP 840 G4','HP 840 G5'],
+            }
+            
+            var $deviceModels = $('#model');
+            $('#type').change(function () {
+                var deviceType = $(this).val(), lcns = deviceModels[deviceType] || [];
+                var html = $.map(lcns, function(lcn){
+                    return '<option value="' + lcn + '">' + lcn + '</option>'
+                }).join('');
+                $deviceModels.html(html)
+            });
+        });
+    </script>
+</body>
+</html>
