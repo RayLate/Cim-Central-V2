@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section id="main">
+    <div class="container text-center">
+        <div class="row my-3">
+            <div class="col-md-12 mx-auto">
+                <div class="card mx-auto">
+                    <div class="card-body">                        
+                        <h4 class="card-title">Select One Below</h4>
+                        <hr>
+                        <div id="selector-main">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="card">
+                                    <div class="card-body">
+                                        <p class="card-text">Deploy a new device to a user.</p>
+                                        <a href="{% url 'device_deploy' %}" id="deploy" class="btn btn-outline-success btn-block">Deploy</a>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="card">
+                                    <div class="card-body">
+                                        <p class="card-text">Edit an asset record</p>
+                                        <a href="#" id="edit" class="btn btn-outline-warning btn-block">Edit</a>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                        <p class="card-text">Return a device</p>
+                                        <a href="#" id="return" class="btn btn-outline-danger btn-block">Return</a>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                                <a href="{% url 'inventory_main' %}" class="btn btn-success btn-block btn-lg">View Inventory</a>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
