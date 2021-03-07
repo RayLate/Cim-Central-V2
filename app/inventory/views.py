@@ -18,4 +18,5 @@ class DeviceListView(ListView):
 class DeviceCreateView(CreateView):
     model = Device
     template_name = "deploy.html"
+    fields = '__all__'
     success_url = reverse_lazy('inventory_main')

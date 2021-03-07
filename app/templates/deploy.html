@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-10  mx-auto">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title text-center">New Deployment</h4>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="form-group col-md-5 mb-0">
+                            {{ form.deviceType|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-5 mb-0">
+                            {{ form.deviceModel|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-2 mb-0">
+                            {{ form.site|as_crispy_field}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.serialnumber|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.deviceOwner|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.ownership|as_crispy_field}}
+                        </div>
+                        <div class="form-group col-md-3 mb-0">
+                            {{ form.submittor|as_crispy_field}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md mb-0">
+                            {{ form.remarks|as_crispy_field}}
+                        </div>
+                    </div>
+                    <input type="submit" class="btn btn-block btn-success" value='Save'>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+  
+{% endblock content %}
