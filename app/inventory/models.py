@@ -54,4 +54,8 @@ class Device(models.Model):
                 setattr(self,field_name, val.upper()) # Change attr to upper
         
         return super(Device, self).save(*args, **kwargs)
+    
+    def get_absolute_url(self):
+        return reverse("deployed_success", args=[str(self.id)])
+    
 
