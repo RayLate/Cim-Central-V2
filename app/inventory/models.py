@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 # Create your models here.
 
 
@@ -54,4 +55,8 @@ class Device(models.Model):
                 setattr(self,field_name, val.upper()) # Change attr to upper
         
         return super(Device, self).save(*args, **kwargs)
+    
+    def get_absolute_url(self):
+        return reverse("device_detail", args=[str(self.id)])
+    
 
