@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 # Create your models here.
 
 
@@ -56,6 +57,6 @@ class Device(models.Model):
         return super(Device, self).save(*args, **kwargs)
     
     def get_absolute_url(self):
-        return reverse("deployed_success", args=[str(self.id)])
+        return reverse("device_detail", args=[str(self.id)])
     
 

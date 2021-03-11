@@ -19,8 +19,13 @@ class DeviceCreateView(CreateView):
     model = Device
     template_name = "deploy.html"
     fields = '__all__'
-    success_url = reverse_lazy('deployed_success')
 
 class DeployedDetailView(DetailView):
     model = Device
-    template_name = "success_deployment.html"
+    template_name = "device_detail.html"
+    
+class DeviceUpdateView(UpdateView):
+    model = Device
+    template_name = "device_update.html"
+    fields = '__all__'
+

@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% load crispy_forms_tags %}
 
@@ -7,7 +7,7 @@
     <div class="col-md-10  mx-auto">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title text-center">New Deployment</h4>
+                <h4 class="card-title text-center">Edit Record</h4>
                 <hr>
                 <form method="post">
                     {% csrf_token %}
@@ -37,16 +37,18 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-md mb-0">
+                        <div class="form-group col-md mb-0 ">
                             {{ form.remarks|as_crispy_field}}
                         </div>
                     </div>
-                    <input type="submit" class="btn btn-block btn-success" value='Save'>
+                    <input type="submit" class="btn btn-block btn-warning" value='Update'>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-  
+<script>
+    document.getElementById("id_remarks").rows = "5";
+</script>
 {% endblock content %}
+
