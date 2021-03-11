@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, TemplateView, DetailView
 from django.urls import reverse_lazy
+from django.db.models import Q
 from .models import Device
 
 # Create your views here.
@@ -8,6 +9,9 @@ from .models import Device
 
 class HomePageView(TemplateView):
     template_name = "index.html"
+    
+class SearchView(TemplateView):
+    template_name = "search.html"
 
 
 class DeviceListView(ListView):
@@ -29,3 +33,14 @@ class DeviceUpdateView(UpdateView):
     template_name = "device_update.html"
     fields = '__all__'
 
+
+class DeviceSearchView(ListView):
+    model = Device
+    template_name = "device_search_result.html"
+    
+    def get_queryset(self): # new
+        query = self.request.GET.get('search')
+        object_list = Device.objects.filter(
+            Q(serialnumber__icontains=query) | Q(deviceOwner__icontains=query)
+        )
+        return object_list

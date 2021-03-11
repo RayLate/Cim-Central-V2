@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <h3 class="text-center pt-3 mb-0">Search for Deployed Device</h3>
+        <hr>
+        <div class="row">
+            <form action="{% url 'device_search_result' %}" method="get" >
+                <div class="col">
+                    <label for="SNsearch">Search By serialnumber</label>
+                    <input id="SNsearch" name="search" type="text" placeholder="Serial Number" class="form-control">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
