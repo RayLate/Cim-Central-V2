@@ -41,7 +41,14 @@
                             {{ form.remarks|as_crispy_field}}
                         </div>
                     </div>
-                    <input type="submit" class="btn btn-block btn-warning" value='Update'>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="submit" class="btn btn-block btn-success" value='Save'>
+                        </div>
+                        <div class="col-md-6">
+                            <a href={% url 'device_detail' device.pk %} class="btn btn-danger btn-block">Cancel</a>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
