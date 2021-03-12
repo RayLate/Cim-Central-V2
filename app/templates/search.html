@@ -2,19 +2,61 @@
 
 {% block content %}
 <div class="container">
-    <div class="card">
+    <div class="card ">
         <h3 class="text-center pt-3 mb-0">Search for Deployed Device</h3>
         <hr>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <button id="searchbysn" class="btn btn-success btn-block btn-lg">Search by Serial Number</button>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <button id="searchbyid" class="btn btn-warning btn-block btn-lg">Search by User ID</button>
+                </div>
+            </div>
+            <form action="{% url 'device_search_result' %}" method="get" id="searchform">
+                
+              </form>
+        </div>
+
         <div class="row">
-            <form action="{% url 'device_search_result' %}" method="get" >
-                <div class="col">
+            <form action="{% url 'device_search_result' %}" method="get" id="searchform">
+                <!-- <div class="col">
                     <label for="SNsearch">Search By serialnumber</label>
                     <input id="SNsearch" name="search" type="text" placeholder="Serial Number" class="form-control">
-                </div>
+                </div> -->
             </form>
         </div>
     </div>
 </div>
+<script>
+    var btnsn = document.getElementById('searchbysn')
+    var btnid = document.getElementById('searchbyid')
 
+    // btnsn.addEventListener('click', showInput());
+    var form = document.getElementById('searchform')
+    var input = document.createElement("input")
+    input.id = "SNsearch"
+    input.type = 'text'
+    input.classList = "form-control mb-3"
+    input.placeholder = 'Testing...'
+
+    console.log(form)
+    console.log(input)
+    btnsn.addEventListener('click', function(e) {
+        input.name = 'serialnum'
+        input.placeholder = 'Serial Number'
+        form.appendChild(input)
+    })
+
+    btnid.addEventListener('click', function(e) {
+        input.name = 'userid'
+        input.placeholder = 'User ID'
+        form.appendChild(input)
+    })
+    console.log(btnsn)
+
+
+</script>
 
 {% endblock content %}

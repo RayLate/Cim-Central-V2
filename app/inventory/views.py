@@ -39,8 +39,16 @@ class DeviceSearchView(ListView):
     template_name = "device_search_result.html"
     
     def get_queryset(self): # new
-        query = self.request.GET.get('search')
-        object_list = Device.objects.filter(
-            Q(serialnumber__icontains=query) | Q(deviceOwner__icontains=query)
-        )
-        return object_list
+        serialnum = self.request.GET.get('serialnum')
+        userid = self.request.GET.get('userid')
+        if serialnum:
+            object_list = Device.objects.filter(
+            Q(serialnumber__icontains=serialnum)
+            )
+            return object_list
+        if userid:
+            object_list = Device.objects.filter(
+            Q(deviceOwner__icontains=userid)
+            )
+            return object_list            
+        
