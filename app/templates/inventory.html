@@ -12,9 +12,9 @@
                 <hr>
                 <div class="row">
                     <div class="col">
-                        <table class="table table-hover table-sm small">
+                        <table class="table table-hover table-sm ">
                             <thead class="thead-light">
-                                <tr>
+                                <tr id="{{ device.pk }}">
                                   <th scope="col">#</th>
                                   <th scope="col">Device Type</th>
                                   <th scope="col">Device Model</th>
@@ -31,7 +31,8 @@
                                   {% endblock th %}
                                 </tr>
                               </thead>
-                              <tbody >
+                              <tbody>
+                                {% csrf_token %}
                                 {% for device in object_list %}
                                     <tr>
                                         <th scope="row">{{ device.pk }}</th>
@@ -61,7 +62,13 @@
         </div>
     </div>
 </div>
-{% block script %}
-  
-{% endblock script %}
+
 {% endblock content %}
+
+{% block script %}
+<script>
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();   
+    });
+</script>
+{% endblock script %}

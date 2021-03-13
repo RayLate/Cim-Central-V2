@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 from django.views.generic import ListView, CreateView, UpdateView, TemplateView, DetailView
 from django.views.generic.base import ContextMixin
 from django.urls import reverse_lazy
@@ -59,13 +60,16 @@ class DeviceSearchView(ListView):
 
 class ReturnDeviceSearchView(DeviceSearchView):
     model = Device
-    template_name = "return_search_result.html"  
+    template_name = "return_search_result.html" 
+
+    def post(self, request, *args, **kwargs):
+        if request.method == 'POST':
+            device_ids = request.POST.get('ids','')
+            device_ids = device_ids.split(',')
+            print(device_ids)
+            self.model.objects.filter(id__in=device_ids).delete()
+            return JsonResponse({"status": "ok"}, status=204)
    
 
 
-# class DeviceDeleteView(DeleteView):
-#     model = Device
-#     template_name = "return.html"
-#     success_url = reverse_lazy('home')
-      
-        
+
