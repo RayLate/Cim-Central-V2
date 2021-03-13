@@ -2,3 +2,9 @@ body {
     overflow-x: hidden;
 }
 
+.custom-checkbox {
+    height:  20px;
+    width: 20px;
+    margin-top: 50%;
+    margin-bottom: 50%;
+}

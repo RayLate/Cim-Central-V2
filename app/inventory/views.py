@@ -1,18 +1,23 @@
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, TemplateView, DetailView
+from django.views.generic.base import ContextMixin
 from django.urls import reverse_lazy
 from django.db.models import Q
 from .models import Device
 
-# Create your views here.
+# Share Functions
 
+
+# Create your views here.
 
 class HomePageView(TemplateView):
     template_name = "index.html"
     
-class SearchView(TemplateView):
-    template_name = "search.html"
+class DeployedSearchView(TemplateView):
+    template_name = "deployed_search.html"
 
+class ReturnSearchView(TemplateView):
+    template_name = "return_search.html"
 
 class DeviceListView(ListView):
     model = Device
@@ -37,7 +42,7 @@ class DeviceUpdateView(UpdateView):
 class DeviceSearchView(ListView):
     model = Device
     template_name = "device_search_result.html"
-    
+
     def get_queryset(self): # new
         serialnum = self.request.GET.get('serialnum')
         userid = self.request.GET.get('userid')
@@ -50,5 +55,17 @@ class DeviceSearchView(ListView):
             object_list = Device.objects.filter(
             Q(deviceOwner__icontains=userid)
             )
-            return object_list            
+            return object_list 
+
+class ReturnDeviceSearchView(DeviceSearchView):
+    model = Device
+    template_name = "return_search_result.html"  
+   
+
+
+# class DeviceDeleteView(DeleteView):
+#     model = Device
+#     template_name = "return.html"
+#     success_url = reverse_lazy('home')
+      
         

@@ -1,0 +1,37 @@
+{% extends 'inventory.html' %}
+
+{% block tabletitle %}
+  Select To Delete
+{% endblock tabletitle %}
+
+{% block th %}
+<th><input class="custom-checkbox" type="checkbox" id="select_all" onclick="selectAll()"></th>
+{% endblock th %}
+
+{% block td %}
+<td><input class="custom-checkbox" type="checkbox" id="delete_device"  name="device_id[]" value="{{device.pk}}"></td>
+{% endblock td %}
+
+{% block aftertable %}
+<button type="submit" class="btn btn-danger btn-block" id="delete-button">Delete Selected</button>
+{% endblock aftertable %}
+
+{% block script %}
+<script>
+    function selectAll() {
+        var selects = document.querySelectorAll('#delete_device')
+        var selectall = document.getElementById("select_all");
+        if(selectall.checked == true){
+            selects.forEach(function(select) {
+                select.checked = true;
+            })
+        } else {
+            selects.forEach(function(select) {
+                select.checked = false;
+            })
+        }
+    }
+
+
+</script>
+{% endblock script %}

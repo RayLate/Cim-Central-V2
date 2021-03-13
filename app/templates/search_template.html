@@ -3,7 +3,9 @@
 {% block content %}
 <div class="container">
     <div class="card ">
-        <h3 class="text-center pt-3 mb-0">Search for Deployed Device</h3>
+        <h3 class="text-center pt-3 mb-0">{% block subtitle %}
+            
+        {% endblock subtitle %}</h3>
         <hr>
         <div class="container">
             <div class="row">
@@ -14,32 +16,33 @@
                     <button id="searchbyid" class="btn btn-warning btn-block btn-lg">Search by User ID</button>
                 </div>
             </div>
-            <form action="{% url 'device_search_result' %}" method="get" id="searchform">
-                
+            <form method="get" id="searchform">
+                <!-- JAVASCRIPT -->
               </form>
-        </div>
-
-        <div class="row">
-            <form action="{% url 'device_search_result' %}" method="get" id="searchform">
-                <!-- <div class="col">
-                    <label for="SNsearch">Search By serialnumber</label>
-                    <input id="SNsearch" name="search" type="text" placeholder="Serial Number" class="form-control">
-                </div> -->
-            </form>
         </div>
     </div>
 </div>
+{% block script %}
+  
+{% endblock script %}
 <script>
     var btnsn = document.getElementById('searchbysn')
     var btnid = document.getElementById('searchbyid')
 
     // btnsn.addEventListener('click', showInput());
     var form = document.getElementById('searchform')
+
     var input = document.createElement("input")
     input.id = "SNsearch"
     input.type = 'text'
-    input.classList = "form-control mb-3"
+    input.classList = "form-control-lg mb-3 form-control"
     input.placeholder = 'Testing...'
+
+    var submit = document.createElement("button")
+    submit.type="submit"
+    submit.classList="btn btn-primary btn-block btn-lg mb-3"
+    submit.textContent = "Search"
+    submit.disabled = true
 
     console.log(form)
     console.log(input)
@@ -47,13 +50,25 @@
         input.name = 'serialnum'
         input.placeholder = 'Serial Number'
         form.appendChild(input)
+        form.append(submit)
     })
 
     btnid.addEventListener('click', function(e) {
         input.name = 'userid'
         input.placeholder = 'User ID'
         form.appendChild(input)
+        form.append(submit)
     })
+
+    form.addEventListener('keyup', function(e) {
+        if(input.value.length >0){
+            submit.disabled = false
+        } else {
+            submit.disabled = true
+        }
+        console.log(input.value.length)
+    })
+
     console.log(btnsn)
 
 

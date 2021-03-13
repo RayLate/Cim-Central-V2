@@ -1,56 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'inventory.html' %}
 
-{% block content %}
+{% block th %}
+<th></th>
+{% endblock th %}
 
-<div class="row my-3">
-    <div class="col-md-10 mx-auto">
-        <div class="card mx-auto">
-            <div class="card-body">
-                <h3 class="card-title text-center">Inventory List</h3>
-                <hr>
-                <div class="row">
-                    <div class="col">
-                        <table class="table table-hover small table-sm">
-                            <thead class="thead-light">
-                                <tr>
-                                  <th scope="col">#</th>
-                                  <th scope="col">Device Type</th>
-                                  <th scope="col">Device Model</th>
-                                  <th scope="col">S/N</th>
-                                  <th scope="col">Device Owner </th>
-                                  <th scope="col">Site</th>
-                                  <th scope="col">Device Ownership</th>
-                                  <th scope="col">Remarks</th>
-                                  <th scope="col">Added On</th>
-                                  <th scope="col">Last Modified On</th>
-                                  <th scope="col">Modified By</th>
-                                  <th></th>
-                                </tr>
-                              </thead>
-                              <tbody >
-                                {% for device in object_list %}
-                                    <tr>
-                                        <th scope="row">{{ device.pk }}</th>
-                                        <td>{{device.deviceType}}</td>
-                                        <td>{{device.deviceModel}}</td>
-                                        <td>{{device.serialnumber}}</td>
-                                        <td>{{device.deviceOwner}}</td>
-                                        <td>{{device.site}}</td>
-                                        <td>{{device.ownership}}</td>
-                                        <td>{{device.remarks}}</td>
-                                        <td>{{device.created_at|date:"SHORT_DATETIME_FORMAT" }}</td>
-                                        <td>{{device.updated_at|date:"SHORT_DATETIME_FORMAT"}}</td>
-                                        <td>{{device.submittor}}</td>
-                                        <td><a href="{% url 'device_update' device.pk %}" class="">Edit</a></td>
-                                    </tr>
-                                {% endfor %}
-                              </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-  
-{% endblock content %}
+{% block td %}
+<td><a href="{% url 'device_update' device.pk %}" class="">Edit</a></td>
+{% endblock td %}
+
