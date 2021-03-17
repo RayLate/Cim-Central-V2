@@ -15,4 +15,7 @@ urlpatterns = [
     path('deploy/', views.DeviceCreateView.as_view(), name='device_deploy'),
     path('deploy/<int:pk>/', views.DeployedDetailView.as_view(), name='device_detail'),
     path('', views.HomePageView.as_view(), name='home'),
+    
+    # ajax url
+    path('ajax/load-models/', views.load_models, name='ajax_load_models'),  # <-- this one here
 ]

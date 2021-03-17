@@ -11,11 +11,20 @@ class DeviceForm(forms.ModelForm):
             'site',
             'ownership',
             'serialnumber',
-            'deviceOwner'
+            'deviceOwner',
             'submittor',
             'remarks',
         )
-
-        widget = {
-            'deviceModel': form.Select(attr={'placeholder'})
-        }
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['deviceModel'].queryset = DeviceModel.objects.none()
+        
+        if 'deviceType' in self.data:
+            try:
+                deviceType_id = int(self.data.get('deviceType'))
+                self.fields['deviceModel'].queryset = DeviceModel.objects.filter(deviceType_id=deviceType_id).order_by('name')
+            except (ValueError, TypeError):
+                pass  # invalid input from the client; ignore and fallback to empty deviceModel queryset
+        elif self.instance.pk:
+            self.fields['deviceModel'].queryset = self.instance.deviceType.deviceModel_set.order_by('name')
