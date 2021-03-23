@@ -14,8 +14,20 @@
                                 <div class="col-sm-4">
                                     <div class="card">
                                     <div class="card-body">
-                                        <p class="card-text">Deploy a new device to a user.</p>
-                                        <a href="{% url 'device_deploy' %}" id="deploy" class="btn btn-outline-success btn-block">Deploy</a>
+                                        <p class="card-text">Device Deployment</p>
+                                        <div class="row">
+                                            <div class="col">
+                                                <button id="deployment_select" class="btn btn-outline-success btn-block">Deploy</button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <a href="{% url 'device_deploy' %}" class="btn btn-outline-success btn-block deploy_choice" hidden>Deploy Single</a>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <a href="{% url 'device_deploy_bulk' %}" class="btn btn-outline-success btn-block deploy_choice" hidden>Deploy Bulk</a>
+                                            </div>
+                                        </div>
                                     </div>
                                     </div>
                                 </div>
@@ -50,3 +62,17 @@
     </div>
 </section>
 {% endblock content %}
+
+{% block script %}
+<script>
+    var deploybtn = document.getElementById('deployment_select');
+    deploybtn.addEventListener('click', function(e){
+        deploybtn.hidden = true;
+        document.querySelectorAll('.deploy_choice').forEach(function(button){
+            console.log(button);
+            button.removeAttribute("hidden");
+        })
+        e.preventDefault();
+    });
+</script>
+{% endblock script %}

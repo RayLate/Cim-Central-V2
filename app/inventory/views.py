@@ -34,8 +34,10 @@ class DeviceListView(ListView):
 class DeviceCreateView(CreateView):
     model = Device
     form_class = DeviceForm
-    template_name = "deploy.html"
-    # fields = '__all__'
+    template_name = "deploy_single.html"
+
+class BulkDeviceCreateView(DeviceCreateView):
+    template_name = "deploy_bulk.html"
 
 class DeployedDetailView(DetailView):
     model = Device
