@@ -26,7 +26,7 @@ SECRET_KEY = '0=nib)d9tc1rcozq0porw$8*gz)=q7a2ueg*)srl89aq^f7=i)'
 DEBUG = True
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*', 'localhost', 'fmlvweb-dev', 'fmlvweb-prod', 'sedwards-dev', 'sedwards-dev.micron.com', '.micron.com', 'locentos76-hoss01.micron.com', 'locentos76-hoss01', 'lo-trujillo-hoss',]
 
 
 # Application definition
