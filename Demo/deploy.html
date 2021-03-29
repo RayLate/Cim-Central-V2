@@ -25,7 +25,7 @@
                                         <div class="row mb-3">
                                             <div class="col">
                                                 <label for="type">Device Type</label>
-                                                <select class="form-control" name="type" id="type">                                                    
+                                                <select class="form-control" name="type" id="type">
                                                     <option value='not-count' selected="selected">Select Device Type</option>
                                                     <option>Desktop</option>
                                                     <option>Laptop</option>
@@ -72,7 +72,7 @@
                                         </div>
 
                                         <button class="btn btn-primary btn-block" type="submit" id="submit-new">Submit</button>
-                                    </form>                                    
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                 'Desktop': ['HP 800 G3 SFF','HP 800 G4 SFF','HP 800 G5 SFF'],
                 'Laptop': ['HP 840 G3','HP 840 G4','HP 840 G5'],
             }
-            
+
             var $deviceModels = $('#model');
             $('#type').change(function () {
                 var deviceType = $(this).val(), lcns = deviceModels[deviceType] || [];

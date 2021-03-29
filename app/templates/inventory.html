@@ -27,7 +27,7 @@
                                   <th scope="col">Last Modified On</th>
                                   <th scope="col">Modified By</th>
                                   {% block th %}
-                                    
+
                                   {% endblock th %}
                                 </tr>
                               </thead>
@@ -47,14 +47,14 @@
                                         <td>{{device.updated_at|date:"SHORT_DATETIME_FORMAT"}}</td>
                                         <td>{{device.submittor}}</td>
                                         {% block td %}
-                                          
+
                                         {% endblock td %}
                                     </tr>
                                 {% endfor %}
                               </tbody>
                         </table>
                         {% block aftertable %}
-                          
+
                         {% endblock aftertable %}
                     </div>
                 </div>
@@ -68,7 +68,7 @@
 {% block script %}
 <script>
     $(document).ready(function(){
-      $('[data-toggle="tooltip"]').tooltip();   
+      $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
 {% endblock script %}

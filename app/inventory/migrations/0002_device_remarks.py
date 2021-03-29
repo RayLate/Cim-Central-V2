@@ -5,14 +5,10 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('inventory', '0001_initial'),
-    ]
+    dependencies = [("inventory", "0001_initial")]
 
     operations = [
         migrations.AddField(
-            model_name='device',
-            name='remarks',
-            field=models.TextField(null=True),
-        ),
+            model_name="device", name="remarks", field=models.TextField(null=True)
+        )
     ]

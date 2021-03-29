@@ -5,19 +5,36 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('inventory', '0003_auto_20210307_1538'),
-    ]
+    dependencies = [("inventory", "0003_auto_20210307_1538")]
 
     operations = [
         migrations.AddField(
-            model_name='device',
-            name='ownership',
-            field=models.CharField(choices=[('Primary Device', 'Primary Device'), ('Secondary Device', 'Secondary Device'), ('Share Device', 'Share Device'), ('VIP Device', 'VIP Device')], default='Primary Device', max_length=20),
+            model_name="device",
+            name="ownership",
+            field=models.CharField(
+                choices=[
+                    ("Primary Device", "Primary Device"),
+                    ("Secondary Device", "Secondary Device"),
+                    ("Share Device", "Share Device"),
+                    ("VIP Device", "VIP Device"),
+                ],
+                default="Primary Device",
+                max_length=20,
+            ),
         ),
         migrations.AddField(
-            model_name='device',
-            name='site',
-            field=models.CharField(choices=[('F10N', 'F10N'), ('F10W', 'F10W'), ('F10A', 'F10A'), ('F10X', 'F10X'), ('MSB', 'MSB')], max_length=5, null=True),
+            model_name="device",
+            name="site",
+            field=models.CharField(
+                choices=[
+                    ("F10N", "F10N"),
+                    ("F10W", "F10W"),
+                    ("F10A", "F10A"),
+                    ("F10X", "F10X"),
+                    ("MSB", "MSB"),
+                ],
+                max_length=5,
+                null=True,
+            ),
         ),
     ]
