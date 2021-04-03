@@ -1,5 +1,6 @@
 from django import forms
-from .models import DeviceType, DeviceModel, Device
+
+from .models import Device, DeviceModel, DeviceType
 
 
 class DeviceForm(forms.ModelForm):

@@ -1,6 +1,5 @@
 // document.getElementById('deploy').addEventListener('click', newDeployment);
 
-
 // const selectsection = document.getElementById('selector-main');
 
 // function newDeployment() {

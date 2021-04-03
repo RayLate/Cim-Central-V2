@@ -1,83 +1,82 @@
-{% extends "base.html" %}
-
-{% load crispy_forms_tags %}
-
-{% block content %}
+{% extends "base.html" %} {% load crispy_forms_tags %} {% block content %}
 <div class="container">
-    <div class="row">
-        <div class="col  mx-auto">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title text-center">New Deployment</h4>
-                    <hr>
-                    <form method="post" id="deploymentForm" data-models-url = "{% url 'ajax_load_models' %}" >
-                        {% csrf_token %}
-                        <div class="row">
-                            <div class="form-group col-md-5 mb-0">
-                                {{ form.deviceType|as_crispy_field}}
-                            </div>
-                            <div class="form-group col-md-5 mb-0">
-                                {{ form.deviceModel|as_crispy_field}}
-                            </div>
-                            <div class="form-group col-md-2 mb-0">
-                                {{ form.site|as_crispy_field}}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-3 mb-0">
-                                {{ form.serialnumber|as_crispy_field}}
-                            </div>
-                            <div class="form-group col-md-3 mb-0">
-                                {{ form.deviceOwner|as_crispy_field}}
-                            </div>
-                            <div class="form-group col-md-3 mb-0">
-                                {{ form.ownership|as_crispy_field}}
-                            </div>
-                            <div class="form-group col-md-3 mb-0">
-                                {{ form.submittor|as_crispy_field}}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md mb-0">
-                                {{ form.remarks|as_crispy_field}}
-                            </div>
-                        </div>
-                        <input type="submit" class="btn btn-block btn-success" value='Save'>
-                    </form>
-                </div>
+  <div class="row">
+    <div class="col mx-auto">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title text-center">New Deployment</h4>
+          <hr />
+          <form
+            method="post"
+            id="deploymentForm"
+            data-models-url="{% url 'ajax_load_models' %}"
+          >
+            {% csrf_token %}
+            <div class="row">
+              <div class="form-group col-md-5 mb-0">
+                {{ form.deviceType|as_crispy_field}}
+              </div>
+              <div class="form-group col-md-5 mb-0">
+                {{ form.deviceModel|as_crispy_field}}
+              </div>
+              <div class="form-group col-md-2 mb-0">
+                {{ form.site|as_crispy_field}}
+              </div>
             </div>
+            <div class="row">
+              <div class="form-group col-md-3 mb-0">
+                {{ form.serialnumber|as_crispy_field}}
+              </div>
+              <div class="form-group col-md-3 mb-0">
+                {{ form.deviceOwner|as_crispy_field}}
+              </div>
+              <div class="form-group col-md-3 mb-0">
+                {{ form.ownership|as_crispy_field}}
+              </div>
+              <div class="form-group col-md-3 mb-0">
+                {{ form.submittor|as_crispy_field}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md mb-0">
+                {{ form.remarks|as_crispy_field}}
+              </div>
+            </div>
+            <input
+              type="submit"
+              class="btn btn-block btn-success"
+              value="Save"
+            />
+          </form>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
-
-{% endblock content %}
-
-{% block script %}
+{% endblock content %} {% block script %}
 <script>
-    document.getElementById("id_remarks").rows = "5";
+  document.getElementById("id_remarks").rows = "5";
 
-    $("#id_deviceType").change(function () {
-        var url = $("#deploymentForm").attr("data-models-url");  // get the url of the `ajax_load_models` view
-        var devicetypeId = $(this).val();  // get the selected deviceType ID from the HTML input
+  $("#id_deviceType").change(function () {
+    var url = $("#deploymentForm").attr("data-models-url"); // get the url of the `ajax_load_models` view
+    var devicetypeId = $(this).val(); // get the selected deviceType ID from the HTML input
 
-        if(devicetypeId == ''){
-            $("#id_deviceModel").html('<option value="">---------</option>')
-        } else {
-
-            $.ajax({                       // initialize an AJAX request
-            url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
-            data: {
-                'type': devicetypeId       // add the deviceType id to the GET parameters
-            },
-            success: function (data) {   // `data` is the return of the `load_cities` view function
-                $("#id_deviceModel").html(data);  // replace the contents of the model input with the data that came from the server
-            }
-            });
-        }
-
+    if (devicetypeId == "") {
+      $("#id_deviceModel").html('<option value="">---------</option>');
+    } else {
+      $.ajax({
+        // initialize an AJAX request
+        url: url,
+        data: {
+          type: devicetypeId, // add the deviceType id to the GET parameters
+        },
+        success: function (data) {
+          // `data` is the return of the `load_cities` view function
+          $("#id_deviceModel").html(data); // replace the contents of the model input with the data that came from the server
+        },
       });
-
-
+    }
+  });
 </script>
 {% endblock script %}

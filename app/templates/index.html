@@ -1,78 +1,103 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <section id="main">
-    <div class="container text-center">
-        <div class="row">
-            <div class="col">
-                <div class="card mx-auto">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col">
+        <div class="card mx-auto">
+          <div class="card-body">
+            <h4 class="card-title">Select One Below</h4>
+            <hr />
+            <div id="selector-main">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Select One Below</h4>
-                        <hr>
-                        <div id="selector-main">
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="card">
-                                    <div class="card-body">
-                                        <p class="card-text">Device Deployment</p>
-                                        <div class="row">
-                                            <div class="col">
-                                                <button id="deployment_select" class="btn btn-outline-success btn-block">Deploy</button>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <a href="{% url 'device_deploy' %}" class="btn btn-outline-success btn-block deploy_choice" hidden>Deploy Single</a>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <a href="{% url 'device_deploy_bulk' %}" class="btn btn-outline-success btn-block deploy_choice" hidden>Deploy Bulk</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="card">
-                                    <div class="card-body">
-                                        <p class="card-text">Edit an asset record</p>
-                                        <a href="{% url 'deploy_search' %}" id="edit" class="btn btn-outline-warning btn-block">Edit</a>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="card">
-                                        <div class="card-body">
-                                        <p class="card-text">Return a device</p>
-                                        <a href="{% url 'return_search' %}" id="return" class="btn btn-outline-danger btn-block">Return</a>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
+                      <p class="card-text">Device Deployment</p>
+                      <div class="row">
+                        <div class="col">
+                          <button
+                            id="deployment_select"
+                            class="btn btn-outline-success btn-block"
+                          >
+                            Deploy
+                          </button>
                         </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col">
-                                <a href="{% url 'inventory_main' %}" class="btn btn-success btn-block btn-lg">View Inventory</a>
-                            </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <a
+                            href="{% url 'device_deploy' %}"
+                            class="btn btn-outline-success btn-block deploy_choice"
+                            hidden
+                            >Deploy Single</a
+                          >
                         </div>
+                        <div class="col-md-6">
+                          <a
+                            href="{% url 'device_deploy_bulk' %}"
+                            class="btn btn-outline-success btn-block deploy_choice"
+                            hidden
+                            >Deploy Bulk</a
+                          >
+                        </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
+                <div class="col-sm-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <p class="card-text">Edit an asset record</p>
+                      <a
+                        href="{% url 'deploy_search' %}"
+                        id="edit"
+                        class="btn btn-outline-warning btn-block"
+                        >Edit</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <p class="card-text">Return a device</p>
+                      <a
+                        href="{% url 'return_search' %}"
+                        id="return"
+                        class="btn btn-outline-danger btn-block"
+                        >Return</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+            <hr />
+            <div class="row">
+              <div class="col">
+                <a
+                  href="{% url 'inventory_main' %}"
+                  class="btn btn-success btn-block btn-lg"
+                  >View Inventory</a
+                >
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
-{% endblock content %}
-
-{% block script %}
+{% endblock content %} {% block script %}
 <script>
-    var deploybtn = document.getElementById('deployment_select');
-    deploybtn.addEventListener('click', function(e){
-        deploybtn.hidden = true;
-        document.querySelectorAll('.deploy_choice').forEach(function(button){
-            console.log(button);
-            button.removeAttribute("hidden");
-        })
-        e.preventDefault();
+  var deploybtn = document.getElementById("deployment_select");
+  deploybtn.addEventListener("click", function (e) {
+    deploybtn.hidden = true;
+    document.querySelectorAll(".deploy_choice").forEach(function (button) {
+      console.log(button);
+      button.removeAttribute("hidden");
     });
+    e.preventDefault();
+  });
 </script>
 {% endblock script %}

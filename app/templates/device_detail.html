@@ -1,37 +1,48 @@
-{% extends 'base.html' %}
-
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <div class="container">
   <div class="row">
     <div class="col-md-8">
       <div class="card">
         <div class="card-body">
           <p class="card-text mb-1 small font-weight-bold">Device Deployed</p>
-          <h3 class="card-title"> {{ device.deviceModel }} </h3>
-          <p class="card-text">This device is deployed to <span>{{device.deviceOwner}}</span> on {{device.created_at|date:"SHORT_DATETIME_FORMAT" }}</p>
-
+          <h3 class="card-title">{{ device.deviceModel }}</h3>
+          <p class="card-text">
+            This device is deployed to <span>{{device.deviceOwner}}</span> on
+            {{device.created_at|date:"SHORT_DATETIME_FORMAT" }}
+          </p>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Type: {{device.deviceType}} </li>
+          <li class="list-group-item">Type: {{device.deviceType}}</li>
           <li class="list-group-item">S/N: {{device.serialnumber}}</li>
-          <li class="list-group-item">Site: {{device.site}} </li>
+          <li class="list-group-item">Site: {{device.site}}</li>
           {% if device.remarks != '' %}
-                <li class="list-group-item">Remarks: {{device.remarks}} </li>
+          <li class="list-group-item">Remarks: {{device.remarks}}</li>
           {% endif %}
         </ul>
       </div>
     </div>
     <div class="col-md-4">
-        <div class="row mb-3">
-         <a href= "{% url 'device_deploy' %}" class="btn btn-primary btn-block btn-lg">Deploy A Device</a>
-        </div>
-        <div class="row mb-3">
-         <a href="{% url 'device_update' device.pk %}" class="btn btn-warning btn-block btn-lg text-white">Edit Entry</a>
-        </div>
-        <div class="row">
-         <a href="{% url 'inventory_main' %}" class="btn btn-success btn-block btn-lg">View Inventory</a>
-        </div>
+      <div class="row mb-3">
+        <a
+          href="{% url 'device_deploy' %}"
+          class="btn btn-primary btn-block btn-lg"
+          >Deploy A Device</a
+        >
+      </div>
+      <div class="row mb-3">
+        <a
+          href="{% url 'device_update' device.pk %}"
+          class="btn btn-warning btn-block btn-lg text-white"
+          >Edit Entry</a
+        >
+      </div>
+      <div class="row">
+        <a
+          href="{% url 'inventory_main' %}"
+          class="btn btn-success btn-block btn-lg"
+          >View Inventory</a
+        >
+      </div>
     </div>
   </div>
 </div>

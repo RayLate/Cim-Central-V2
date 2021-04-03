@@ -1,12 +1,7 @@
-{% extends "search_template.html" %}
-
-{% block subtitle %}
-    Search Deployed Device
-{% endblock subtitle %}
-
-{% block script %}
+{% extends "search_template.html" %} {% block subtitle %} Search Deployed Device
+{% endblock subtitle %} {% block script %}
 <script>
-    var form = document.getElementById('searchform')
-    form.action="{% url 'device_search_result' %}"
+  var form = document.getElementById("searchform");
+  form.action = "{% url 'device_search_result' %}";
 </script>
 {% endblock script %}

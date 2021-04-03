@@ -1,9 +1,5 @@
-{% extends 'inventory.html' %}
-
-{% block th %}
+{% extends 'inventory.html' %} {% block th %}
 <th></th>
-{% endblock th %}
-
-{% block td %}
+{% endblock th %} {% block td %}
 <td><a href="{% url 'device_update' device.pk %}" class="">Edit</a></td>
 {% endblock td %}

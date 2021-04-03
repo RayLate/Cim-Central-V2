@@ -1,15 +1,16 @@
-from django.shortcuts import render
+from django.db.models import Q
 from django.http import JsonResponse
+from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic import (
-    ListView,
     CreateView,
-    UpdateView,
-    TemplateView,
     DetailView,
+    ListView,
+    TemplateView,
+    UpdateView,
 )
 from django.views.generic.base import ContextMixin
-from django.urls import reverse_lazy
-from django.db.models import Q
+
 from .form import DeviceForm
 from .models import Device, DeviceModel
 

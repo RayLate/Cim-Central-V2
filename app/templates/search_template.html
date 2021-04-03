@@ -1,77 +1,75 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <div class="container">
-    <div class="card ">
-        <h3 class="text-center pt-3 mb-0">{% block subtitle %}
-
-        {% endblock subtitle %}</h3>
-        <hr>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <button id="searchbysn" class="btn btn-success btn-block btn-lg">Search by Serial Number</button>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <button id="searchbyid" class="btn btn-warning btn-block btn-lg">Search by User ID</button>
-                </div>
-            </div>
-            <form method="get" id="searchform">
-                <!-- JAVASCRIPT -->
-              </form>
+  <div class="card">
+    <h3 class="text-center pt-3 mb-0">
+      {% block subtitle %} {% endblock subtitle %}
+    </h3>
+    <hr />
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <button id="searchbysn" class="btn btn-success btn-block btn-lg">
+            Search by Serial Number
+          </button>
         </div>
+        <div class="col-md-6 mb-3">
+          <button id="searchbyid" class="btn btn-warning btn-block btn-lg">
+            Search by User ID
+          </button>
+        </div>
+      </div>
+      <form method="get" id="searchform">
+        <!-- JAVASCRIPT -->
+      </form>
     </div>
+  </div>
 </div>
-{% block script %}
-
-{% endblock script %}
+{% block script %} {% endblock script %}
 <script>
-    var btnsn = document.getElementById('searchbysn')
-    var btnid = document.getElementById('searchbyid')
+  var btnsn = document.getElementById("searchbysn");
+  var btnid = document.getElementById("searchbyid");
 
-    // btnsn.addEventListener('click', showInput());
-    var form = document.getElementById('searchform')
+  // btnsn.addEventListener('click', showInput());
+  var form = document.getElementById("searchform");
 
-    var input = document.createElement("input")
-    input.id = "SNsearch"
-    input.type = 'text'
-    input.classList = "form-control-lg mb-3 form-control"
-    input.placeholder = 'Testing...'
+  var input = document.createElement("input");
+  input.id = "SNsearch";
+  input.type = "text";
+  input.classList = "form-control-lg mb-3 form-control";
+  input.placeholder = "Testing...";
 
-    var submit = document.createElement("button")
-    submit.type="submit"
-    submit.classList="btn btn-primary btn-block btn-lg mb-3"
-    submit.textContent = "Search"
-    submit.disabled = true
+  var submit = document.createElement("button");
+  submit.type = "submit";
+  submit.classList = "btn btn-primary btn-block btn-lg mb-3";
+  submit.textContent = "Search";
+  submit.disabled = true;
 
-    console.log(form)
-    console.log(input)
-    btnsn.addEventListener('click', function(e) {
-        input.name = 'serialnum'
-        input.placeholder = 'Serial Number'
-        form.appendChild(input)
-        form.append(submit)
-    })
+  console.log(form);
+  console.log(input);
+  btnsn.addEventListener("click", function (e) {
+    input.name = "serialnum";
+    input.placeholder = "Serial Number";
+    form.appendChild(input);
+    form.append(submit);
+  });
 
-    btnid.addEventListener('click', function(e) {
-        input.name = 'userid'
-        input.placeholder = 'User ID'
-        form.appendChild(input)
-        form.append(submit)
-    })
+  btnid.addEventListener("click", function (e) {
+    input.name = "userid";
+    input.placeholder = "User ID";
+    form.appendChild(input);
+    form.append(submit);
+  });
 
-    form.addEventListener('keyup', function(e) {
-        if(input.value.length >0){
-            submit.disabled = false
-        } else {
-            submit.disabled = true
-        }
-        console.log(input.value.length)
-    })
+  form.addEventListener("keyup", function (e) {
+    if (input.value.length > 0) {
+      submit.disabled = false;
+    } else {
+      submit.disabled = true;
+    }
+    console.log(input.value.length);
+  });
 
-    console.log(btnsn)
-
-
+  console.log(btnsn);
 </script>
 
 {% endblock content %}

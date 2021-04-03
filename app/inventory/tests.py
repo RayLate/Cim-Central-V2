@@ -1,9 +1,10 @@
-from django.test import TestCase, SimpleTestCase
 from django.contrib.auth import get_user_model
-from django.urls import reverse
-from .models import Device, DeviceType, DeviceModel
 from django.contrib.auth.models import User
 from django.db import IntegrityError
+from django.test import SimpleTestCase, TestCase
+from django.urls import reverse
+
+from .models import Device, DeviceModel, DeviceType
 
 hp840g6 = {
     "deviceType": "Laptop",
