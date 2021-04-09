@@ -34,14 +34,10 @@ DEBUG = env.bool("DEBUG", default=False)
 ALLOWED_HOSTS = [
     "*",
     "localhost",
-    "fmlvweb-dev",
-    "fmlvweb-prod",
-    "sedwards-dev",
-    "sedwards-dev.micron.com",
     ".micron.com",
-    "locentos76-hoss01.micron.com",
-    "locentos76-hoss01",
-    "lo-trujillo-hoss",
+    "0.0.0.0",
+    'bo-ose-test.micron.com',
+    'bo-ose-prod.micron.com'
 ]
 
 
