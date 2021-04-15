@@ -31,14 +31,7 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG", default=False)
 
-ALLOWED_HOSTS = [
-    "*",
-    "localhost",
-    ".micron.com",
-    "0.0.0.0",
-    'bo-ose-test.micron.com',
-    'bo-ose-prod.micron.com'
-]
+ALLOWED_HOSTS = ["*", "localhost"]
 
 
 # Application definition

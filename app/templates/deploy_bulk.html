@@ -57,7 +57,12 @@
                         </th>
                         <td>{{ form.deviceType|as_crispy_field}}</td>
                         <td>{{ form.deviceModel|as_crispy_field}}</td>
-                        <td>{{ form.serialnumber|as_crispy_field}}</td>
+                        <td
+                          id="sn_field"
+                          data-models-url="{% url 'ajax_check_unique_serial_number' %}"
+                        >
+                          {{ form.serialnumber|as_crispy_field}}
+                        </td>
                         <td>{{ form.ownership|as_crispy_field}}</td>
                       </tr>
                     </tbody>
@@ -110,31 +115,50 @@
   document.getElementById("add_more").addEventListener("click", function () {
     var deviceType = $("#id_deviceType").val();
     var deviceModel = $("#id_deviceModel").val();
-    var serialnumber = $("#id_serialnumber").val();
+    var serialnumber = $("#id_serialnumber").val().toUpperCase();
     var ownership = $("#id_ownership").val();
 
     if (deviceType && deviceModel && serialnumber) {
-      var table = document.getElementById("deployed_table");
-      var rowCount = table.rows.length;
-      var row = table.insertRow(rowCount - 1);
+      var url = $("#sn_field").attr("data-models-url");
+      $.ajax({
+        url: url,
+        data: {
+          serialnumber: serialnumber,
+        },
+        success: function (data) {
+          var table = document.getElementById("deployed_table");
+          var rowCount = table.rows.length;
+          var row = table.insertRow(rowCount - 1);
 
-      var colCount = table.rows[0].cells.length;
-      var cell0 = row.insertCell(0);
-      cell0.innerHTML =
-        '<a class="text-center text-danger delete-button" href="#"><i class="fas fa-times"></i></a>';
-      var cell1 = row.insertCell(1);
-      cell1.innerText = $("#id_deviceType option:selected").text();
-      var cell2 = row.insertCell(2);
-      cell2.innerText = $("#id_deviceModel option:selected").text();
-      var cell3 = row.insertCell(3);
-      cell3.innerText = serialnumber;
-      var cell4 = row.insertCell(4);
-      cell4.innerText = ownership;
-      console.log("added", deviceType, deviceModel, serialnumber, ownership);
-      $("#id_deviceType").val("");
-      $("#id_deviceModel").val("");
-      $("#id_serialnumber").val("");
-      $("#id_ownership").val("Primary Device");
+          var colCount = table.rows[0].cells.length;
+          var cell0 = row.insertCell(0);
+          cell0.innerHTML =
+            '<a class="text-center text-danger delete-button" href="#"><i class="fas fa-times"></i></a>';
+          var cell1 = row.insertCell(1);
+          cell1.innerText = $("#id_deviceType option:selected").text();
+          var cell2 = row.insertCell(2);
+          cell2.innerText = $("#id_deviceModel option:selected").text();
+          var cell3 = row.insertCell(3);
+          cell3.innerText = serialnumber.toUpperCase();
+          var cell4 = row.insertCell(4);
+          cell4.innerText = ownership;
+          console.log(
+            "added",
+            deviceType,
+            deviceModel,
+            serialnumber,
+            ownership
+          );
+          $("#id_deviceType").val("");
+          $("#id_deviceModel").val("");
+          $("#id_serialnumber").val("");
+          $("#id_ownership").val("Primary Device");
+          console.log(data);
+        },
+        error: function () {
+          alert(serialnumber + " exists in the database");
+        },
+      });
     } else {
       alert("Please fill something");
     }

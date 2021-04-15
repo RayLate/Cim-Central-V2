@@ -1,5 +1,5 @@
 from django.db.models import Q
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse, HttpResponseBadRequest
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import (
@@ -21,6 +21,16 @@ def load_models(request):
     deviceType_id = request.GET.get("type")
     models = DeviceModel.objects.filter(deviceType_id=deviceType_id).order_by("name")
     return render(request, "model_dropdown_list_options.html", {"models": models})
+
+
+def check_unique_serial_number(request):
+    serial_number = request.GET.get("serialnumber")
+    # print(serial_number)
+    exist = Device.objects.filter(serialnumber=serial_number).exists()
+    if not exist:
+        return HttpResponse(f"{serial_number} is unique")
+    else:
+        return HttpResponseBadRequest()
 
 
 # Create your views here.

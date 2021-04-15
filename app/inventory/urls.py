@@ -28,7 +28,10 @@ urlpatterns = [
     path("deploy/<int:pk>/", views.DeployedDetailView.as_view(), name="device_detail"),
     path("", views.HomePageView.as_view(), name="home"),
     # ajax url
+    path("ajax/load-models/", views.load_models, name="ajax_load_models"),
     path(
-        "ajax/load-models/", views.load_models, name="ajax_load_models"
-    ),  # <-- this one here
+        "ajax/check_unique_serial_number/",
+        views.check_unique_serial_number,
+        name="ajax_check_unique_serial_number",
+    ),
 ]
